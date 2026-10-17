@@ -1,0 +1,11 @@
+<CodeBlock language="text" editable>
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.vscode/
+.DS_Store
+</CodeBlock>

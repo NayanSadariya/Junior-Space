@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f7f5">
+
+    <title>Junior Space</title>
+    <meta
+        name="description"
+        content="Draw mathematical problems in the air and solve them with Junior."
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/index.css') }}"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [["\\(", "\\)"]],
+                displayMath: [["\\[", "\\]"]],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: [
+                    "script",
+                    "noscript",
+                    "style",
+                    "textarea",
+                    "pre",
+                    "code"
+                ]
+            }
+        };
+    </script>
+
+    <script
+        defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script
+        defer
+        src="{{ url_for('static', filename='js/junior-space.js') }}"
+    ></script>
+</head>
+
+<body>
+    <main class="workspace">
+        <section class="camera-stage" id="cameraStage">
+            <img
+                id="cameraFeed"
+                class="camera-feed"
+                alt="Live camera view for air drawing"
+                draggable="false"
+            >
+
+            <div class="camera-placeholder" id="cameraPlaceholder">
+                <div class="placeholder-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="6" width="18" height="13" rx="3"></rect>
+                        <circle cx="12" cy="12.5" r="3.5"></circle>
+                        <path d="M8 6l1.3-2h5.4L16 6"></path>
+                    </svg>
+                </div>
+
+                <p class="eyebrow">YOUR PERSONAL THINKING SPACE</p>
+                <h1>Your space to think.</h1>
+                <p class="placeholder-description">
+                    Draw a problem in the air. Let Junior help you solve it.
+                </p>
+
+                <button
+                    class="primary-button"
+                    id="enableCameraButton"
+                    type="button"
+                >
+                    <span class="button-dot"></span>
+                    Turn on camera
+                </button>
+
+                <p class="privacy-note">
+                    Your camera turns off when you leave this page.
+                </p>
+            </div>
+
+            <header class="camera-topbar">
+                <a class="brand" href="/" aria-label="Junior Space home">
+                    <span class="brand-mark">j.</span>
+                    <span class="brand-name">junior<span>space</span></span>
+                </a>
+
+                <div class="topbar-right">
+                    <div class="camera-status" id="cameraStatus">
+                        <span class="status-dot"></span>
+                        Camera off
+                    </div>
+
+                    <button
+                        class="icon-button"
+                        id="cameraToggleButton"
+                        type="button"
+                        aria-label="Turn camera on"
+                        title="Toggle camera"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="6" width="13" height="12" rx="3"></rect>
+                            <path d="m16 10 5-3v10l-5-3"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="gesture-guide" id="gestureGuide">
+                <span class="guide-item">
+                    <span class="gesture-symbol">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 21V8"></path>
+                            <path d="M12 8V4"></path>
+                            <path d="M12 12l-4 3"></path>
+                        </svg>
+                    </span>
+                    <span>One finger <small>Draw</small></span>
+                </span>
+
+                <span class="guide-divider"></span>
+
+                <span class="guide-item">
+                    <span class="gesture-symbol">3</span>
+                    <span>Three fingers <small>Undo</small></span>
+                </span>
+
+                <span class="guide-divider"></span>
+
+                <span class="guide-item">
+                    <span class="gesture-symbol">↑</span>
+                    <span>Thumb only <small>Reset</small></span>
+                </span>
+
+                <span class="guide-divider"></span>
+
+                <span class="guide-item">
+                    <span class="gesture-symbol">✋</span>
+                    <span>Open palm <small>Solve</small></span>
+                </span>
+            </div>
+
+            <div
+                class="camera-message"
+                id="cameraMessage"
+                aria-live="polite"
+            ></div>
+        </section>
+
+        <aside class="answer-panel" id="answerPanel">
+            <div class="panel-heading">
+                <div class="panel-title-group">
+                    <span class="junior-avatar">j.</span>
+                    <div>
+                        <h2>Junior</h2>
+                        <p>Your thinking companion</p>
+                    </div>
+                </div>
+
+                <div
+                    class="answer-status"
+                    id="answerStatus"
+                    aria-live="polite"
+                >
+                    <span class="status-dot"></span>
+                    Ready
+                </div>
+            </div>
+
+            <div class="panel-divider"></div>
+
+            <div
+                class="answer-content"
+                id="answerContent"
+                aria-live="polite"
+                aria-atomic="false"
+            >
+                <div class="empty-answer">
+                    <div class="answer-sparkle">✳</div>
+                    <h3>Let's solve something.</h3>
+                    <p>
+                        Draw a maths problem in the air, then show your open
+                        palm to send it to Junior.
+                    </p>
+                </div>
+            </div>
+
+            <div class="generation-footer" id="generationFooter" hidden>
+                <span class="thinking-indicator" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+
+                <span id="generationMessage">Junior is thinking…</span>
+
+                <button
+                    class="text-button"
+                    id="pauseGenerationButton"
+                    type="button"
+                >
+                    Pause
+                </button>
+            </div>
+        </aside>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+</body>
+</html>
