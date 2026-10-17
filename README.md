@@ -1,109 +1,164 @@
-# AI-Based Air Drawing & Learning System
+# 🚀 Junior Space
 
-An interactive, AI-powered web application that allows users to draw mathematical problems either virtually in the air using hand gestures via a webcam, or on a 2D digital canvas. The system captures the drawings, recognizes the handwriting, and provides detailed, step-by-step mathematical solutions using the advanced Google Gemini AI engine.
+**Draw in the air. Solve with AI. Learn without limits.**
 
----
+Junior Space is an AI-powered interactive workspace that lets you draw using hand gestures in front of your webcam and solve mathematical problems with Google's Gemini AI. No physical whiteboard, stylus, or touchscreen required — just your hand and a camera.
 
-## 🚀 Key Features
+## ✨ Features
 
-### 1. 🖐️ Virtual Draw (Webcam Mode)
-* **Real-time Gesture Tracking:** Uses OpenCV and MediaPipe Hand Landmarking to track hand movements.
-* **On-screen UI Controls:** Select drawing colors (Blue, Green, Red, Yellow) or clear the canvas by hovering your index finger over visual buttons.
-* **Smart Pen Mechanics:** Draw seamlessly by pointing your index finger. Pause drawing/raise the pen by bringing your thumb and index finger close together (pinching gesture).
-* **AI Analysis:** Capture your air drawings and send them to Google Gemini for real-time mathematical analysis.
+- ✍️ **Air Drawing** — Draw on a virtual canvas using your index finger.
+- 🧠 **AI-Powered Math Solving** — Submit your handwritten equations and mathematical problems to Gemini AI.
+- 🖐️ **Gesture-Based Controls** — Control the workspace naturally with hand gestures.
+- ↩️ **Undo Strokes** — Remove your last stroke using a gesture.
+- 🧹 **Gesture Reset** — Clear the canvas without clicking a button.
+- ⏸️ **Pause Generation** — Resume drawing if you no longer want to wait for an AI response.
+- 📷 **Camera Controls** — Turn the webcam on or off whenever needed.
+- 💎 **Modern Interface** — A responsive, minimal interface with a glassmorphism-inspired design.
+- 🔒 **Local Webcam Processing** — Hand tracking and drawing run locally; only submitted canvas content is sent to Gemini for AI processing.
 
-### 2. 🎨 AI Board (Digital Canvas Mode)
-* **Interactive 2D Sketchpad:** Draw directly on the screen using a mouse, stylus, or trackpad on an HTML5 canvas.
-* **Customization Tools:** Adjust brush sizes, select any color from a color picker, or use the eraser tool.
-* **AI Problem Solver:** Write complex math equations or draw questions, then click **Solve Problem** to get step-by-step guidance.
+## 🖐️ Gesture Controls
 
-### 3. 🧠 Gemini AI Integration
-* Powered by the state-of-the-art `gemini-2.0-flash` model.
-* High-accuracy OCR (Optical Character Recognition) for handwritten text/symbols.
-* Step-by-step educational explanations tailored for easy learning.
+| Gesture | Action |
+|---|---|
+| ☝️ Index finger extended | Draw on the canvas |
+| 🤟 Three fingers extended | Undo the last stroke |
+| 👍 Thumb only extended | Clear the canvas |
+| 🖐️ Open palm | Submit the drawing to Gemini AI |
 
----
-
-## 📂 Project Structure
-
-```text
-├── Air-Canvas-with-ML/         # Legacy folder
-└── air_drawing/
-    ├── main.py                 # Flask server, OpenCV/MediaPipe pipeline & Gemini API integration
-    ├── static/                 # Static assets (CSS styles & client-side JavaScript)
-    │   ├── css/
-    │   │   ├── ai_board.css    # Styles for AI Board UI
-    │   │   └── index.css       # Styles for main layout and Virtual Draw UI
-    │   └── ai_board.js         # Canvas rendering, toolbar events, and API fetch calls
-    └── templates/              # HTML views
-        ├── index.html          # Main page hosting the webcam Virtual Draw feed
-        └── ai_board.html       # AI Board whiteboard interface
-```
-
----
+**Tip:** Hold a gesture steadily for a short moment to trigger the corresponding action.
 
 ## 🛠️ Tech Stack
 
-* **Backend:** Python, Flask
-* **Computer Vision:** OpenCV, MediaPipe
-* **Generative AI:** Google GenAI SDK (`gemini-2.0-flash`)
-* **Frontend:** HTML5 Canvas, CSS3, JavaScript (ES6)
+| Technology | Purpose |
+|---|---|
+| Python | Core application logic |
+| Flask | Backend and HTTP endpoints |
+| OpenCV | Webcam capture and image processing |
+| MediaPipe Tasks | Real-time hand landmark detection |
+| NumPy | Canvas and image operations |
+| Google Gemini API | AI-powered problem solving |
+| HTML, CSS & JavaScript | Frontend and interactive interface |
+| MathJax | Mathematical expression rendering |
 
----
+## 📁 Project Structure
 
-## ⚙️ Setup & Installation
+```text
+Junior-Space/
+├── main.py
+├── requirements.txt
+├── .env                  # API key — never commit this file
+├── models/
+│   └── hand_landmarker.task
+├── templates/
+│   ├── index.html
+│   └── ai_board.html
+└── static/
+    ├── css/
+    │   └── index.css
+    └── js/
+        └── junior-space.js
+```
+
+## ⚙️ Getting Started
 
 ### Prerequisites
-* Python 3.8 or higher installed on your machine.
-* A working webcam (required for the Virtual Draw gesture mode).
-* A Google Gemini API Key. Get one from the [Google AI Studio](https://aistudio.google.com/).
 
-### Installation Steps
+- Python installed on your system
+- A webcam
+- A Google Gemini API key
+- The MediaPipe hand landmark model at `models/hand_landmarker.task`
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/pranav-kumar-080/Ai_Based_Air_Drawing_Learning_System.git
-   cd Ai_Based_Air_Drawing_Learning_System
-   ```
-   *(Or navigate to your cloned repository folder)*
+### 1. Clone the Repository
 
-2. **Install Dependencies:**
-   Install the required Python packages using pip:
-   ```bash
-   pip install flask opencv-python mediapipe numpy google-generativeai python-dotenv pillow
-   ```
+```bash
+git clone https://github.com/YOUR_USERNAME/Junior-Space.git
+cd Junior-Space
+```
 
-3. **Configure Environment Variables:**
-   Create a file named `.env` in the `air_drawing` directory (or the root directory where you launch the application) and add your Google Gemini API key:
-   ```env
-   GOOGLE_API_KEY=your_actual_gemini_api_key_here
-   ```
+Replace `YOUR_USERNAME` with your GitHub username.
 
-4. **Run the Application:**
-   Navigate into the `air_drawing` directory and start the Flask development server:
-   ```bash
-   cd air_drawing
-   python main.py
-   ```
+### 2. Create a Virtual Environment
 
-5. **Access the App:**
-   Open your web browser and navigate to:
-   [http://127.0.0.1:5000](http://127.0.0.1:5000)
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+Replace the placeholder with your actual API key. **Never commit your `.env` file or expose your API key publicly.**
+
+### 5. Run the Application
+
+```bash
+python main.py
+```
+
+Open the local URL shown in the terminal, usually:
+
+```text
+http://127.0.0.1:5000
+```
+
+Allow camera access if your browser requests permission.
+
+## 🔄 How It Works
+
+1. **Capture:** The webcam captures video frames.
+2. **Track:** MediaPipe detects hand landmarks and identifies gestures.
+3. **Draw:** Your index finger controls strokes on the virtual canvas.
+4. **Submit:** An open-palm gesture submits the current drawing for analysis.
+5. **Solve:** Gemini processes the submitted content and generates a response.
+6. **Display:** The answer appears in the floating answer panel.
+
+## 🔐 Privacy & Security
+
+- Keep API keys in environment variables.
+- Exclude `.env`, virtual environments, and Python cache files from Git.
+- Hand tracking and canvas drawing are designed to run locally.
+- The submitted drawing is sent to the configured Gemini API for processing.
+- Camera access can be turned off from the interface.
+
+Review the implementation and your API provider's policies before deploying publicly.
+
+## 🗺️ Roadmap
+
+- [ ] Improve gesture recognition accuracy.
+- [ ] Support more mathematical symbols and complex equations.
+- [ ] Improve AI reasoning and answer formatting.
+- [ ] Add more interactive learning capabilities.
+- [ ] Explore additional AI-powered workspace features.
+
+## 🤝 Contributing
+
+Contributions, ideas, bug reports, and feature suggestions are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Open a pull request.
+
+## 📄 License
+
+No license has been specified yet. Add a `LICENSE` file when you decide how others may use, modify, and distribute this project.
 
 ---
 
-## 💡 How to Use
-
-### Virtual Draw Mode:
-1. Click the **Start** button to turn on your webcam feed.
-2. Hold up one hand. You will see MediaPipe skeleton tracking lines overlaying your hand.
-3. Move your index finger to draw.
-4. Pinch your thumb and index finger together to lift the pen and stop drawing.
-5. Hover your index finger over the top menu headers to change colors or clear the canvas.
-6. Once you've drawn a problem (e.g., `2 + 2 = ?`), click **Solve** to see the solution under *Recognition Result*.
-
-### AI Board Mode:
-1. Click **AI Board** in the navigation bar.
-2. Select your brush size and color.
-3. Draw or write your question on the canvas using your mouse or touchscreen.
-4. Click **Solve Problem** to let the Gemini model analyze and display a structured step-by-step answer.
+**Built with curiosity, code, and AI.** 🚀
